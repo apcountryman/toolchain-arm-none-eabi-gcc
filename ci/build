@@ -61,9 +61,10 @@ function display_version()
 
 function ensure_no_build_errors_are_present()
 {
+    local -r toolchain_file="$repository/toolchain.cmake"
     local -r build_directory="$repository/build"
 
-    if ! cmake -S "$repository" -B "$build_directory"; then
+    if ! cmake -DCMAKE_TOOLCHAIN_FILE="$toolchain_file" -S "$repository" -B "$build_directory"; then
         abort
     fi
 
