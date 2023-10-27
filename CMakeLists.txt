@@ -13,33 +13,10 @@
 # KIND, either express or implied. See the License for the specific language governing
 # permissions and limitations under the License.
 
-# Description: GitHub Actions CI workflow for the toolchain-arm-none-eabi-gcc repository.
+# Description: toolchain-arm-none-eabi-gcc core CMake rules.
 
-name: CI
-
-on:
-    push:
-        branches:
-            - main
-    pull_request:
-        branches:
-            - main
-
-jobs:
-    analyze-static-shellcheck:
-        name: Analyze (static) - shellcheck
-        runs-on: ubuntu-20.04
-        steps:
-            - uses: actions/checkout@v3
-            - name: Analyze
-              shell: bash
-              run: ./ci/analyze --analyzer shellcheck
-
-    build:
-        name: Build
-        runs-on: ubuntu-20.04
-        steps:
-            - uses: actions/checkout@v3
-            - name: Build
-              shell: bash
-              run: ./ci/build
+cmake_minimum_required( VERSION 3.16.3 )
+project(
+    toolchain-arm-none-eabi-gcc
+    LANGUAGES C CXX
+)
