@@ -13,7 +13,10 @@
 # KIND, either express or implied. See the License for the specific language governing
 # permissions and limitations under the License.
 
-# Description: Git ignore rules for the toolchain-arm-none-eabi-gcc repository.
+# Description: toolchain-arm-none-eabi-gcc core CMake rules.
 
-# ignore the build directory
-build/
+cmake_minimum_required( VERSION 3.16.3 )
+project(
+    toolchain-arm-none-eabi-gcc
+    LANGUAGES C CXX
+)

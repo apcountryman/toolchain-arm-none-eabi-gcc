@@ -15,6 +15,27 @@ SSH:
 git clone git@github.com:apcountryman/toolchain-arm-none-eabi-gcc.git
 ```
 
+## Usage (Dependency)
+To use this toolchain, simply set `CMAKE_TOOLCHAIN_FILE` to the path to this repository's
+`toolchain.cmake` file when initializing CMake.
+
+### Finding Tools
+This toolchain expects to find `arm-none-eabi-gcc`, `arm-none-eabi-g++`, and associated
+binary utilities in the path(s) searched by CMake's `find_program()` command.
+If the toolchain fails to locate tools, consult the documentation for CMake's
+`find_program()` command.
+
+## Usage (Development)
+This repository's Git `pre-commit` hook script is the simplest way to configure, build,
+and test this project during development.
+See the `pre-commit` script's help text for usage details.
+```shell
+./git/hooks/pre-commit --help
+```
+
+Additional checks, such as static analysis, are performed by this project's GitHub Actions
+CI workflow.
+
 ## Versioning
 `toolchain-arm-none-eabi-gcc` follows the [Abseil Live at Head
 philosophy](https://abseil.io/about/philosophy).
