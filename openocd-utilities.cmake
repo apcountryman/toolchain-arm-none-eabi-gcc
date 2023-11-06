@@ -81,15 +81,15 @@ function( add_openocd_target target )
     set( openocd_arguments "" )
 
     if( DEFINED add_openocd_target_SEARCH_PATH )
-        foreach( path "${add_openocd_target_SEARCH_PATH}" )
+        foreach( path ${add_openocd_target_SEARCH_PATH} )
             list( APPEND openocd_arguments "--search" "${path}" )
-        endforeach( path "${add_openocd_target_SEARCH_PATH}" )
+        endforeach( path ${add_openocd_target_SEARCH_PATH} )
     endif( DEFINED add_openocd_target_SEARCH_PATH )
 
     if( DEFINED add_openocd_target_FILES )
-        foreach( file "${add_openocd_target_FILES}" )
+        foreach( file ${add_openocd_target_FILES} )
             list( APPEND openocd_arguments "--file" "${file}" )
-        endforeach( file "${add_openocd_target_FILES}" )
+        endforeach( file ${add_openocd_target_FILES} )
     endif( DEFINED add_openocd_target_FILES )
 
     if( DEFINED add_openocd_target_DEBUG_LEVEL )
@@ -107,9 +107,9 @@ function( add_openocd_target target )
     endif( DEFINED add_openocd_target_DEBUG_LEVEL )
 
     if( DEFINED add_openocd_target_COMMANDS )
-        foreach( command "${add_openocd_target_COMMANDS}" )
+        foreach( command ${add_openocd_target_COMMANDS} )
             list( APPEND openocd_arguments "--command" "\"${command}\"" )
-        endforeach( command "${add_openocd_target_COMMANDS}" )
+        endforeach( command ${add_openocd_target_COMMANDS} )
     endif( DEFINED add_openocd_target_COMMANDS )
 
     add_custom_target(
