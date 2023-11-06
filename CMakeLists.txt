@@ -21,4 +21,6 @@ project(
     LANGUAGES C CXX
 )
 
-include( openocd-utilities.cmake )
+list( APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}" )
+
+include( openocd-utilities )
