@@ -108,7 +108,7 @@ function( add_openocd_target target )
 
     if( DEFINED add_openocd_target_COMMANDS )
         foreach( command "${add_openocd_target_COMMANDS}" )
-            list( APPEND openocd_arguments "--command" "${command}" )
+            list( APPEND openocd_arguments "--command" "\"${command}\"" )
         endforeach( command "${add_openocd_target_COMMANDS}" )
     endif( DEFINED add_openocd_target_COMMANDS )
 
