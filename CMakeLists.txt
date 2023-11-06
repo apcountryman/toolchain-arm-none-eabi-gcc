@@ -20,3 +20,5 @@ project(
     toolchain-arm-none-eabi-gcc
     LANGUAGES C CXX
 )
+
+include( openocd-utilities.cmake )
