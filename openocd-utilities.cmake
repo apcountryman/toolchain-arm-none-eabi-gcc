@@ -57,7 +57,10 @@ endif ( "${CMAKE_OPENOCD}" STREQUAL "CMAKE_OPENOCD-NOTFOUND" )
 #         DEPENDS     example
 #         FILES       "${PROJECT_SOURCE_DIR}/openocd.cfg"
 #         DEBUG_LEVEL INFORMATIONAL_MESSAGES
-#         COMMANDS    "telnet_port disabled; program example verify reset; shutdown"
+#         COMMANDS
+#             "telnet_port disabled"
+#             "program example verify reset"
+#             "shutdown"
 #     )
 function( add_openocd_target target )
     cmake_parse_arguments(
@@ -77,13 +80,17 @@ function( add_openocd_target target )
 
     set( openocd_arguments "" )
 
-    foreach( path "${add_openocd_target_SEARCH_PATH}" )
-        list( APPEND openocd_arguments "--search" "${path}" )
-    endforeach( path "${add_openocd_target_SEARCH_PATH}" )
+    if( DEFINED add_openocd_target_SEARCH_PATH )
+        foreach( path "${add_openocd_target_SEARCH_PATH}" )
+            list( APPEND openocd_arguments "--search" "${path}" )
+        endforeach( path "${add_openocd_target_SEARCH_PATH}" )
+    endif( DEFINED add_openocd_target_SEARCH_PATH )
 
-    foreach( file "${add_openocd_target_FILES}" )
-        list( APPEND openocd_arguments "--file" "${file}" )
-    endforeach( file "${add_openocd_target_FILES}" )
+    if( DEFINED add_openocd_target_FILES )
+        foreach( file "${add_openocd_target_FILES}" )
+            list( APPEND openocd_arguments "--file" "${file}" )
+        endforeach( file "${add_openocd_target_FILES}" )
+    endif( DEFINED add_openocd_target_FILES )
 
     if( DEFINED add_openocd_target_DEBUG_LEVEL )
         if( "${add_openocd_target_DEBUG_LEVEL}" STREQUAL "ERRORS" )
@@ -99,9 +106,11 @@ function( add_openocd_target target )
         endif( "${add_openocd_target_DEBUG_LEVEL}" STREQUAL "ERRORS" )
     endif( DEFINED add_openocd_target_DEBUG_LEVEL )
 
-    foreach( command "${add_openocd_target_COMMANDS}" )
-        list( APPEND openocd_arguments "--command" "${command}" )
-    endforeach( command "${add_openocd_target_COMMANDS}" )
+    if( DEFINED add_openocd_target_COMMANDS )
+        foreach( command "${add_openocd_target_COMMANDS}" )
+            list( APPEND openocd_arguments "--command" "${command}" )
+        endforeach( command "${add_openocd_target_COMMANDS}" )
+    endif( DEFINED add_openocd_target_COMMANDS )
 
     add_custom_target(
         "${target}"
