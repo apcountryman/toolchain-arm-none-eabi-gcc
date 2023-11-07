@@ -73,6 +73,7 @@ endif ( "${CMAKE_OPENOCD}" STREQUAL "CMAKE_OPENOCD-NOTFOUND" )
 #             "telnet_port disabled"
 #             "program example verify reset"
 #             "shutdown"
+#     )
 function( add_openocd_target target )
     cmake_parse_arguments(
         add_openocd_target
