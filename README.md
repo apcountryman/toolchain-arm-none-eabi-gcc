@@ -26,6 +26,9 @@ To use the OpenOCD utilities, add the path to this repository to the project's
 The OpenOCD utilities include the following functions:
 - `add_openocd_target()`
 
+Documentation for the usage of the OpenOCD utilities [can be found in the
+`openocd-utilities.cmake` file in this repository](openocd-utilities.cmake).
+
 ### Finding Tools
 This toolchain expects to find `arm-none-eabi-gcc`, `arm-none-eabi-g++`, associated binary
 utilities, and `openocd` in the path(s) searched by CMake's `find_program()` command.
