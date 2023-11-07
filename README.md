@@ -4,6 +4,8 @@
 
 `toolchain-arm-none-eabi-gcc` is a CMake toolchain for cross compiling for Arm Cortex-M
 and Cortex-R microcontrollers using arm-none-eabi-gcc.
+In addition to configuring CMake for cross compiling with arm-none-eabi-gcc, the toolchain
+provides optional OpenOCD utilities.
 
 ## Obtaining the Source Code
 HTTPS:
@@ -19,9 +21,18 @@ git clone git@github.com:apcountryman/toolchain-arm-none-eabi-gcc.git
 To use this toolchain, simply set `CMAKE_TOOLCHAIN_FILE` to the path to this repository's
 `toolchain.cmake` file when initializing CMake.
 
+To use the OpenOCD utilities, add the path to this repository to the project's
+`CMAKE_MODULE_PATH`, and include `openocd-utilities.cmake`.
+The OpenOCD utilities include the following functions:
+- `add_openocd_target()`
+
+Documentation for the usage of the OpenOCD utilities [can be found in the
+`openocd-utilities.cmake` file in this repository](openocd-utilities.cmake).
+
 ### Finding Tools
-This toolchain expects to find `arm-none-eabi-gcc`, `arm-none-eabi-g++`, and associated
-binary utilities in the path(s) searched by CMake's `find_program()` command.
+This toolchain expects to find `arm-none-eabi-gcc`, `arm-none-eabi-g++`, associated binary
+utilities, and `openocd` in the path(s) searched by CMake's `find_program()` command.
+`openocd` is only required if `openocd-utilities.cmake` is included.
 If the toolchain fails to locate tools, consult the documentation for CMake's
 `find_program()` command.
 
