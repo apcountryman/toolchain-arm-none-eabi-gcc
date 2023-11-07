@@ -131,3 +131,75 @@ function( add_openocd_target target )
         VERBATIM
     )
 endfunction( add_openocd_target )
+
+# Add OpenOCD flash programming target for an executable.
+#
+# SYNOPSIS
+#     add_openocd_flash_programming_target(
+#         <executable>
+#         [SEARCH_PATH <path>...]
+#         [FILES <file>...]
+#         [DEBUG_LEVEL ERRORS|WARNINGS|INFORMATIONAL_MESSAGES|DEBUG_MESSAGES]
+#         [COMMANDS <command>...]
+#     )
+# OPTIONS
+#     <executable>
+#         Specify the name of the executable that the flash programming target
+#         ("<executable>-program-flash") will be created for.
+#     COMMANDS <command>...
+#         Specify the OpenOCD commands to execute on server startup. Equivalent to
+#         OpenOCD's "--command <command>" option.
+#     DEBUG_LEVEL ERRORS|WARNINGS|INFORMATIONAL_MESSAGES|DEBUG_MESSAGES
+#         Specify OpenOCD's debug level. "ERRORS" is equivalent to OpenOCD's "--debug 0"
+#         option. "WARNINGS" is equivalent to OpenOCD's "--debug 1" option.
+#         "INFORMATIONAL_MESSAGES" is equivalent to OpenOCD's "--debug 2" option.
+#         "DEBUG_MESSAGES" is equivalent to OpenOCD's "--debug 3" option.
+#     FILES <file>...
+#         Specify the configuration files to load and scripts to execute. Equivalent to
+#         OpenOCD's "--file <file>" option.
+#     SEARCH_PATH <path>...
+#         Specify paths to add to the configuration files and scripts search path.
+#         Equivalent to OpenOCD's "--search <path>" option.
+# EXAMPLES
+#     add_openocd_flash_programming_target(
+#         example
+#         FILES "${PROJECT_SOURCE_DIR}/openocd.cfg"
+#     )
+#     add_openocd_flash_programming_target(
+#         example
+#         DEBUG_LEVEL WARNINGS
+#         COMMANDS
+#             "source [find interface/cmsis-dap.cfg]"
+#             "set CHIPNAME at91samd21g18"
+#             "set ENDIAN little"
+#             "source [find target/at91samdXX.cfg]"
+#     )
+function( add_openocd_flash_programming_target executable )
+    cmake_parse_arguments(
+        add_openocd_flash_programming_target
+        ""
+        "DEBUG_LEVEL"
+        "COMMANDS;FILES;SEARCH_PATH"
+        ${ARGN}
+    )
+
+    if( DEFINED add_openocd_flash_programming_target_UNPARSED_ARGUMENTS )
+        message(
+            FATAL_ERROR
+            "'${add_openocd_flash_programming_target_UNPARSED_ARGUMENTS}' are not supported arguments"
+        )
+    endif( DEFINED add_openocd_flash_programming_target_UNPARSED_ARGUMENTS )
+
+    add_openocd_target(
+        "${executable}-program-flash"
+        DEPENDS "${executable}"
+        SEARCH_PATH ${add_openocd_flash_programming_target_SEARCH_PATH}
+        FILES       ${add_openocd_flash_programming_target_FILES}
+        DEBUG_LEVEL ${add_openocd_flash_programming_target_DEBUG_LEVEL}
+        COMMANDS
+            ${add_openocd_flash_programming_target_COMMANDS}
+            "telnet_port disabled"
+            "program ${executable} verify reset"
+            "shutdown"
+    )
+endfunction( add_openocd_flash_programming_target )
