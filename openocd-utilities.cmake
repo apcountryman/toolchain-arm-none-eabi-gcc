@@ -54,14 +54,25 @@ endif ( "${CMAKE_OPENOCD}" STREQUAL "CMAKE_OPENOCD-NOTFOUND" )
 # EXAMPLES
 #     add_openocd_target(
 #         example-program-flash
-#         DEPENDS     example
-#         FILES       "${PROJECT_SOURCE_DIR}/openocd.cfg"
-#         DEBUG_LEVEL INFORMATIONAL_MESSAGES
+#         DEPENDS  example
+#         FILES    "${PROJECT_SOURCE_DIR}/openocd.cfg"
 #         COMMANDS
 #             "telnet_port disabled"
 #             "program example verify reset"
 #             "shutdown"
 #     )
+#     add_openocd_target(
+#         example-program-flash
+#         DEPENDS     example
+#         DEBUG_LEVEL WARNINGS
+#         COMMANDS
+#             "source [find interface/cmsis-dap.cfg]"
+#             "set CHIPNAME at91samd21g18"
+#             "set ENDIAN little"
+#             "source [find target/at91samdXX.cfg]"
+#             "telnet_port disabled"
+#             "program example verify reset"
+#             "shutdown"
 function( add_openocd_target target )
     cmake_parse_arguments(
         add_openocd_target
