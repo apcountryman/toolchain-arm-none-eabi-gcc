@@ -25,6 +25,7 @@ To use the OpenOCD utilities, add the path to this repository to the project's
 `CMAKE_MODULE_PATH`, and include `openocd-utilities.cmake`.
 The OpenOCD utilities include the following functions:
 - `add_openocd_target()`
+- `add_openocd_flash_programming_target()`
 
 Documentation for the usage of the OpenOCD utilities [can be found in the
 `openocd-utilities.cmake` file in this repository](openocd-utilities.cmake).
