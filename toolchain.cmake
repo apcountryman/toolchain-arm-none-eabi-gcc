@@ -1,6 +1,6 @@
 # toolchain-arm-none-eabi-gcc
 #
-# Copyright 2023, Andrew Countryman <apcountryman@gmail.com> and the
+# Copyright 2023-2024, Andrew Countryman <apcountryman@gmail.com> and the
 # toolchain-arm-none-eabi-gcc contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
