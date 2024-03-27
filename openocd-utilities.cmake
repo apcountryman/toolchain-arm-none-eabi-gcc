@@ -81,13 +81,13 @@ function( add_openocd_target target )
         "DEBUG_LEVEL"
         "COMMANDS;DEPENDS;FILES;SEARCH_PATH"
         ${ARGN}
-    )
+        )
 
     if( DEFINED add_openocd_target_UNPARSED_ARGUMENTS )
         message(
             FATAL_ERROR
             "'${add_openocd_target_UNPARSED_ARGUMENTS}' are not supported arguments"
-        )
+            )
     endif( DEFINED add_openocd_target_UNPARSED_ARGUMENTS )
 
     set( openocd_arguments "" )
@@ -129,7 +129,7 @@ function( add_openocd_target target )
         COMMAND "${CMAKE_OPENOCD}" ${openocd_arguments}
         DEPENDS ${add_openocd_target_DEPENDS}
         VERBATIM
-    )
+        )
 endfunction( add_openocd_target )
 
 # Add OpenOCD flash programming target for an executable.
@@ -181,13 +181,13 @@ function( add_openocd_flash_programming_target executable )
         "DEBUG_LEVEL"
         "COMMANDS;FILES;SEARCH_PATH"
         ${ARGN}
-    )
+        )
 
     if( DEFINED add_openocd_flash_programming_target_UNPARSED_ARGUMENTS )
         message(
             FATAL_ERROR
             "'${add_openocd_flash_programming_target_UNPARSED_ARGUMENTS}' are not supported arguments"
-        )
+            )
     endif( DEFINED add_openocd_flash_programming_target_UNPARSED_ARGUMENTS )
 
     add_openocd_target(
@@ -201,5 +201,5 @@ function( add_openocd_flash_programming_target executable )
             "telnet_port disabled"
             "program ${executable} verify reset"
             "shutdown"
-    )
+        )
 endfunction( add_openocd_flash_programming_target )

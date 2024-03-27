@@ -19,8 +19,7 @@ cmake_minimum_required( VERSION 3.16.3 )
 project(
     toolchain-arm-none-eabi-gcc
     LANGUAGES C CXX
-)
+    )
 
 list( APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}" )
-
 include( openocd-utilities )
