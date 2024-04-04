@@ -20,5 +20,5 @@ project( toolchain-arm-none-eabi-gcc
     LANGUAGES C CXX
     )
 
-list( APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}" )
+list( APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}" )
 include( openocd-utilities )
