@@ -17,9 +17,9 @@
 
 find_program( CMAKE_OPENOCD openocd )
 mark_as_advanced( CMAKE_OPENOCD )
-if ( "${CMAKE_OPENOCD}" STREQUAL "CMAKE_OPENOCD-NOTFOUND" )
+if ( CMAKE_OPENOCD STREQUAL "CMAKE_OPENOCD-NOTFOUND" )
     message( FATAL_ERROR "openocd not found" )
-endif ( "${CMAKE_OPENOCD}" STREQUAL "CMAKE_OPENOCD-NOTFOUND" )
+endif ( CMAKE_OPENOCD STREQUAL "CMAKE_OPENOCD-NOTFOUND" )
 
 # Add OpenOCD target.
 #
@@ -105,17 +105,17 @@ function( add_openocd_target target )
     endif( DEFINED add_openocd_target_FILES )
 
     if( DEFINED add_openocd_target_DEBUG_LEVEL )
-        if( "${add_openocd_target_DEBUG_LEVEL}" STREQUAL "ERRORS" )
+        if( add_openocd_target_DEBUG_LEVEL STREQUAL "ERRORS" )
             list( APPEND openocd_arguments "--debug" "0" )
-        elseif( "${add_openocd_target_DEBUG_LEVEL}" STREQUAL "WARNINGS" )
+        elseif( add_openocd_target_DEBUG_LEVEL STREQUAL "WARNINGS" )
             list( APPEND openocd_arguments "--debug" "1" )
-        elseif( "${add_openocd_target_DEBUG_LEVEL}" STREQUAL "INFORMATIONAL_MESSAGES" )
+        elseif( add_openocd_target_DEBUG_LEVEL STREQUAL "INFORMATIONAL_MESSAGES" )
             list( APPEND openocd_arguments "--debug" "2" )
-        elseif( "${add_openocd_target_DEBUG_LEVEL}" STREQUAL "DEBUG_MESSAGES" )
+        elseif( add_openocd_target_DEBUG_LEVEL STREQUAL "DEBUG_MESSAGES" )
             list( APPEND openocd_arguments "--debug" "3" )
-        else( "${add_openocd_target_DEBUG_LEVEL}" STREQUAL "ERRORS" )
+        else( add_openocd_target_DEBUG_LEVEL STREQUAL "ERRORS" )
             message( FATAL_ERROR "'${add_openocd_target_DEBUG_LEVEL}' is not a supported debug level" )
-        endif( "${add_openocd_target_DEBUG_LEVEL}" STREQUAL "ERRORS" )
+        endif( add_openocd_target_DEBUG_LEVEL STREQUAL "ERRORS" )
     endif( DEFINED add_openocd_target_DEBUG_LEVEL )
 
     if( DEFINED add_openocd_target_COMMANDS )
