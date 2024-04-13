@@ -84,8 +84,7 @@ function( add_openocd_target target )
         )
 
     if( DEFINED add_openocd_target_UNPARSED_ARGUMENTS )
-        message(
-            FATAL_ERROR
+        message( FATAL_ERROR
             "'${add_openocd_target_UNPARSED_ARGUMENTS}' are not supported arguments"
             )
     endif( DEFINED add_openocd_target_UNPARSED_ARGUMENTS )
@@ -184,8 +183,7 @@ function( add_openocd_flash_programming_target executable )
         )
 
     if( DEFINED add_openocd_flash_programming_target_UNPARSED_ARGUMENTS )
-        message(
-            FATAL_ERROR
+        message( FATAL_ERROR
             "'${add_openocd_flash_programming_target_UNPARSED_ARGUMENTS}' are not supported arguments"
             )
     endif( DEFINED add_openocd_flash_programming_target_UNPARSED_ARGUMENTS )
